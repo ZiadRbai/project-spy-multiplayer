@@ -10,25 +10,45 @@ using Photon.Realtime;
 public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
 {
     public TMP_InputField joinInput;
+    private ErrorPanel errorPanel;
+    private PopUps popUpManager;
+    private int roomCodeLength = 5;
+
+    public void Awake()
+    {
+        popUpManager = GameObject.Find("PopUpManager").GetComponent<PopUps>();
+        errorPanel = popUpManager.errorPanel;
+        
+    }
 
     public void CreateRoom()
     {
         RoomOptions roomOptions = new RoomOptions();
-        roomOptions.MaxPlayers = 2;
-        PhotonNetwork.CreateRoom(RandomStringGenerator(5));
+        roomOptions.MaxPlayers = 1;
+        PhotonNetwork.CreateRoom(RandomStringGenerator(roomCodeLength), roomOptions);
+    }
+
+    public override void OnCreateRoomFailed(short returnCode, string message)
+    {
+        errorPanel.DisplayError(message);
     }
 
     public void JoinRoom()
     {
-        PhotonNetwork.JoinRoom(joinInput.text);
+        if    (joinInput.text.Length == roomCodeLength) { PhotonNetwork.JoinRoom(joinInput.text); }
+        else if(joinInput.text.Length > roomCodeLength) { errorPanel.DisplayError("Room code too long"); }
+        else if(joinInput.text.Length < roomCodeLength) { errorPanel.DisplayError("Room code too short"); }
     }
 
-    
+    public override void OnJoinRoomFailed(short returnCode, string message)
+    {
+        errorPanel.DisplayError(message);
+    }
+
     public override void OnJoinedRoom()
     {
         PhotonNetwork.LoadLevel("GameLobby");
     }
-
 
     string RandomStringGenerator(int length)
     {

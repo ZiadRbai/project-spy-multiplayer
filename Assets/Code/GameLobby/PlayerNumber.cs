@@ -12,7 +12,7 @@ public class PlayerNumber : MonoBehaviourPunCallbacks
     void Start()
     {
         PlayerNumberDisplay = GetComponent<TMP_Text>();
-        InvokeRepeating("Refresh", 1f, 1f);
+        InvokeRepeating("Refresh", 0f, 1f);
     }
 
     private void Refresh()
