@@ -5,20 +5,20 @@ using TMPro;
 using Photon.Pun;
 
 
-public class PlayerNumber : MonoBehaviourPunCallbacks
+public class PlayerCount : MonoBehaviourPunCallbacks
 {
-    TMP_Text PlayerNumberDisplay;
+    TMP_Text PlayerCountText;
 
     void Start()
     {
-        PlayerNumberDisplay = GetComponent<TMP_Text>();
+        PlayerCountText = GetComponent<TMP_Text>();
         InvokeRepeating("Refresh", 0f, 1f);
     }
 
     private void Refresh()
     {
 
-        PlayerNumberDisplay.text = PhotonNetwork.CurrentRoom.PlayerCount.ToString();
+        PlayerCountText.text = PhotonNetwork.CurrentRoom.PlayerCount.ToString();
     }
 
     

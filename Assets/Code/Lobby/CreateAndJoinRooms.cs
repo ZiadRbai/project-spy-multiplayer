@@ -24,7 +24,7 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
     public void CreateRoom()
     {
         RoomOptions roomOptions = new RoomOptions();
-        roomOptions.MaxPlayers = 1;
+        roomOptions.MaxPlayers = 2;
         PhotonNetwork.CreateRoom(RandomStringGenerator(roomCodeLength), roomOptions);
     }
 
@@ -36,8 +36,7 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
     public void JoinRoom()
     {
         if    (joinInput.text.Length == roomCodeLength) { PhotonNetwork.JoinRoom(joinInput.text); }
-        else if(joinInput.text.Length > roomCodeLength) { errorPanel.DisplayError("Room code too long"); }
-        else if(joinInput.text.Length < roomCodeLength) { errorPanel.DisplayError("Room code too short"); }
+        else { errorPanel.DisplayError("Room code has to be 5 characters long"); }
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message)
