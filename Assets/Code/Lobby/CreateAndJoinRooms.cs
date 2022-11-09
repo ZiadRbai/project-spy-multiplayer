@@ -12,23 +12,35 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
     [SerializeField]
     private  TMP_InputField joinInput, nameInput;
 
+    [SerializeField] 
+    private byte maxPlayers;
+
     private PopUps popUpManager;
     private int roomCodeLength = 5;
-    [SerializeField] private byte maxPlayers;
 
     public void Awake()
     {
         popUpManager = GameObject.Find("PopUpManager").GetComponent<PopUps>();
-        
     }
 
     public void CreateRoom()
     {
+        SetLocalPlayerProperties();
+        PhotonNetwork.CreateRoom(RandomStringGenerator(roomCodeLength), SetRoomOptions());
+    }
+
+    private RoomOptions SetRoomOptions()
+    {
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.MaxPlayers = maxPlayers;
 
-        PhotonNetwork.NickName = usernameSet();
-        PhotonNetwork.CreateRoom(RandomStringGenerator(roomCodeLength), roomOptions);
+        return roomOptions;
+    }
+
+    private void SetLocalPlayerProperties()
+    {
+        SetlocalPlayerUsername();
+        CustomProperties.LocalPlayer.InitializeLocalCustomProperties();
     }
 
     public override void OnCreateRoomFailed(short returnCode, string message)
@@ -40,7 +52,7 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
     {
         if    (joinInput.text.Length == roomCodeLength) 
         {
-            PhotonNetwork.NickName = usernameSet();
+            SetLocalPlayerProperties();
             PhotonNetwork.JoinRoom(joinInput.text); 
         }
         else { popUpManager.DisplayPopUpMessage("Room code has to be 5 characters long", "Close"); }
@@ -53,7 +65,9 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
+        SetlocalPlayerUsername();
         PhotonNetwork.LoadLevel("GameLobby");
+       
     }
 
     string RandomStringGenerator(int length, bool numbersOnly = false)
@@ -71,15 +85,15 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
         return generated_string;
     }
      
-    string usernameSet()
+    void  SetlocalPlayerUsername()
     {
         if(!string.IsNullOrEmpty(nameInput.text))
         {
-            return nameInput.text;
+            PhotonNetwork.NickName = nameInput.text;
         }
         else
         {
-            return "Guest#" + RandomStringGenerator(4, true);
+            PhotonNetwork.NickName = "Guest#" + RandomStringGenerator(4, true);
         }
     }
 

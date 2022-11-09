@@ -8,7 +8,6 @@ public class PlayerList : MonoBehaviourPunCallbacks
 {
     private Transform playerList;
     [SerializeField] private PlayerElement playerElement;
-    private List<PlayerElement> listingsList = new List<PlayerElement>();
     private Dictionary<int, PlayerElement> listings = new Dictionary<int, PlayerElement>();
 
     private void Awake()
@@ -49,4 +48,17 @@ public class PlayerList : MonoBehaviourPunCallbacks
             listings.Add(player.ActorNumber, element);
         }
     }
+
+    public bool isEveryoneReady()
+    {
+        foreach (PlayerElement p in listings.Values)
+        {
+            if (!p.GetReadyStatus())
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }
