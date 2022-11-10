@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 
 
-public class ReadyButton : MonoBehaviour
+public class ReadyButton : MonoBehaviour, IButton
 {
     [SerializeField] TMP_Text buttonText;
     const string  textReadyUp = "Ready Up";
@@ -21,6 +21,4 @@ public class ReadyButton : MonoBehaviour
             buttonText.SetText(textReadyUp);
         }
     }
-
-    
 }

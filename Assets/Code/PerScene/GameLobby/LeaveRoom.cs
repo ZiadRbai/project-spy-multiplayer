@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using UnityEngine.SceneManagement;
 
-public class LeaveRoom : MonoBehaviourPunCallbacks
+public class LeaveRoom : MonoBehaviourPunCallbacks, IButton
 {
     public void OnClick()
     {
