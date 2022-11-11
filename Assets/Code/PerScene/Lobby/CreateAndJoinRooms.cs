@@ -1,11 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Photon.Pun;
 using Photon.Realtime;
-
-
+using UnityEditor;
 
 public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
 {
@@ -18,11 +15,14 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
     public PopUpManager popUpManager;
     private int roomCodeLength = 5;
 
+    [SerializeField]
+    private StaticString RoomName;
+
 
     public void CreateRoom()
     {
         CustomProperties.LocalPlayer.SetLocalPlayerProperties(nameInput.text);
-        PhotonNetwork.CreateRoom(CustomProperties.RandomStringGenerator(roomCodeLength), SetRoomOptions());
+        PhotonNetwork.CreateRoom(RoomName.value = CustomProperties.RandomStringGenerator(roomCodeLength), SetRoomOptions());
     }
 
     private RoomOptions SetRoomOptions()

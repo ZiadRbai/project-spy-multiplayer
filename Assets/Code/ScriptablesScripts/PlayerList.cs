@@ -4,9 +4,9 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Scriptables/Player List")]
 public class PlayerList : ScriptableObject
 {
-    public Dictionary<int, PlayerElement> roomList = new Dictionary<int, PlayerElement>();
+    public Dictionary<int, BasePlayer> roomList = new Dictionary<int, BasePlayer>();
 
-    public void AddPlayerListing(int actorNumber, PlayerElement element)
+    public void AddPlayerListing(int actorNumber, BasePlayer element)
     {
         roomList.Add(actorNumber, element);
     }
@@ -21,14 +21,14 @@ public class PlayerList : ScriptableObject
         return roomList.ContainsKey(key);
     }
 
-    public PlayerElement GetElement(int key)
+    public BasePlayer GetElement(int key)
     {
         return roomList[key];
     }
 
     public bool isEveryoneReady()
     {
-        foreach (PlayerElement p in roomList.Values)
+        foreach (PlayerLobby p in roomList.Values)
         {
             if (!p.GetReadyStatus())
             {

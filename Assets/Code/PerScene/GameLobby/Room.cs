@@ -5,7 +5,7 @@ using UnityEngine;
 public class Room : MonoBehaviourPunCallbacks
 {
     public PlayerList playerList;
-    public PlayerElementSpawner playerSpawner;
+    public BasePlayerSpawner playerSpawner;
 
     private void Awake()
     {

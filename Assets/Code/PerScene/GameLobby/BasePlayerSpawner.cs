@@ -3,9 +3,9 @@ using UnityEngine;
 using Photon.Realtime;
 using Photon.Pun;
 
-public class PlayerElementSpawner : MonoBehaviour
+public class BasePlayerSpawner : MonoBehaviour
 {
-    [SerializeField] private PlayerElement playerElement;
+    [SerializeField] private BasePlayer basePlayer;
     public void PopulateRoom(Transform room, PlayerList playerList)
     {
         foreach (KeyValuePair<int, Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
@@ -15,7 +15,7 @@ public class PlayerElementSpawner : MonoBehaviour
     }
     public void InstantiatePlayerListing(Player player, Transform room, PlayerList playerList)
     {
-        PlayerElement element = Instantiate(playerElement, room);
+        BasePlayer element = Instantiate(basePlayer, room);
         if (element != null)
         {
             element.SetPlayerInfo(player);
