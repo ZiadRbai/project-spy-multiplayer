@@ -2,7 +2,6 @@ using UnityEngine;
 using TMPro;
 using Photon.Pun;
 using Photon.Realtime;
-using UnityEditor;
 
 public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
 {
@@ -43,6 +42,7 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
         if(joinInput.text.Length == roomCodeLength) 
         {
             CustomProperties.LocalPlayer.SetLocalPlayerProperties(nameInput.text);
+
             PhotonNetwork.JoinRoom(joinInput.text); 
         }
         else 
@@ -58,6 +58,7 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
+        RoomName.value = PhotonNetwork.CurrentRoom.Name;
         PhotonNetwork.LoadLevel("GameLobby");
     }
 }

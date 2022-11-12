@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50763ef8f676e934c8b4822e46d8888f, type: 3}
   m_Name: RoomName
   m_EditorClassIdentifier: 
+  value: SH1iU

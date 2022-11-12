@@ -1273,7 +1273,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1077010214}
   - component: {fileID: 1077010213}
-  - component: {fileID: 1077010215}
   m_Layer: 0
   m_Name: CreateAndJoinRooms
   m_TagString: Untagged
@@ -1295,7 +1294,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joinInput: {fileID: 1739487650}
   nameInput: {fileID: 1115914593}
-  maxPlayers: 2
+  maxPlayers: 3
   popUpManager: {fileID: 11400000, guid: 1af7cab3d96deb64fb97b9545551ac61, type: 2}
   RoomName: {fileID: 11400000, guid: 44a56568b180b104895f1cb10a494280, type: 2}
 --- !u!4 &1077010214
@@ -1313,18 +1312,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1077010215
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1077010212}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f884601ecc7d4943b51cbd770266303, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1115914591
 GameObject:
   m_ObjectHideFlags: 0

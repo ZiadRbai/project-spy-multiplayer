@@ -15,7 +15,6 @@ public class FillBlanks : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("RESTORED");
         RestoreName();
         RestoreRoom();
     }

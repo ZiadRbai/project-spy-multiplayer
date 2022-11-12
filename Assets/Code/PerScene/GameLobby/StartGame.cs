@@ -16,10 +16,9 @@ public class StartGame :  MonoBehaviour, IButton
             popUpManager.DisplayPopUpMessage("Not all players are ready", "Close");
         }
     }
+
     private void ChangeRooms()
     {
         GameObject.FindGameObjectWithTag("PhotonView").GetComponent<MySceneManager>().ChangeRoomScene("GameRoom");
     }
-
-
 }

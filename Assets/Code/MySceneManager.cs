@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.SceneManagement;
-using Photon.Realtime;
 using Photon.Pun;
 using UnityEngine;
 
