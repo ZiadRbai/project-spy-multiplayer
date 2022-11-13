@@ -19,6 +19,10 @@ public class StartGame :  MonoBehaviour, IButton
 
     private void ChangeRooms()
     {
-        GameObject.FindGameObjectWithTag("PhotonView").GetComponent<MySceneManager>().ChangeRoomScene("GameRoom");
+        GameObject player1 = GameObject.FindGameObjectWithTag("PhotonView").gameObject;
+        player1.GetComponent<RoleAssigner>().AssignRoles();
+        player1.GetComponent<MySceneManager>().ChangeRoomScene("GameRoom");
     }
+
+
 }

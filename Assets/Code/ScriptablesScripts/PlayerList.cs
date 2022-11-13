@@ -26,11 +26,16 @@ public class PlayerList : ScriptableObject
         return roomList[key];
     }
 
+    public int GetRoomSize()
+    {
+        return roomList.Count;
+    }
+
     public bool isEveryoneReady()
     {
         foreach (PlayerLobby p in roomList.Values)
         {
-            if (!p.GetReadyStatus())
+            if (!p.GetCustomProperty<bool>(CustomProperties.Ready))
             {
                 return false;
             }

@@ -1107,6 +1107,7 @@ GameObject:
   - component: {fileID: 910157041}
   - component: {fileID: 910157044}
   - component: {fileID: 910157043}
+  - component: {fileID: 910157045}
   m_Layer: 0
   m_Name: Player
   m_TagString: PhotonView
@@ -1177,6 +1178,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isMaster: 0
   startGameButton: {fileID: 709555436}
+--- !u!114 &910157045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 910157040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa7dea99f7ed1de44a2b1a8d11466caf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roles: {fileID: 11400000, guid: 8c4757d77ab1a5b4a90e9fe0b7f4ad92, type: 2}
+  players: {fileID: 11400000, guid: 5368632b29f563640aa796c078be878e, type: 2}
+  spyCount: 1
+  internCount: 1
 --- !u!1 &1045030589
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50763ef8f676e934c8b4822e46d8888f, type: 3}
-  m_Name: RoomName
+  m_Script: {fileID: 11500000, guid: 1437bca195cd1dd44a85142c7a0de78e, type: 3}
+  m_Name: WordTest
   m_EditorClassIdentifier: 
-  value: 
+  words: 

@@ -9,16 +9,7 @@ public class PlayerLobby : BasePlayer
     public override void SetPlayerInfo(Player player)
     {
         base.SetPlayerInfo(player);
-        readyToggle.isOn = GetReadyStatus();
-    }
-
-    public bool GetReadyStatus()
-    {
-        return CustomProperties.GetCustomProperty<bool>(CustomProperties.Ready, _player);
-    }
-    public void SetReadyStatus(bool value)
-    {
-        CustomProperties.SetCustomProperty<bool>(CustomProperties.Ready, _player, value);
+        readyToggle.isOn = GetCustomProperty<bool>(CustomProperties.Ready);
     }
 
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)

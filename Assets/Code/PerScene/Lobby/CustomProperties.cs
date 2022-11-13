@@ -7,6 +7,8 @@ using Photon.Realtime;
 public class CustomProperties : MonoBehaviour
 {
     public const string Ready = "Ready";
+    public const string Role = "Role";
+
 
     public static T GetCustomProperty<T>(string property, Player targetPlayer)
     {
@@ -57,6 +59,19 @@ public class CustomProperties : MonoBehaviour
             else
             {
                 PhotonNetwork.NickName = "Guest#" + RandomStringGenerator(4, true);
+            }
+        }
+
+        public static T GetLocalCustomProperty<T>(string property)
+        {
+            ExitGames.Client.Photon.Hashtable custProperties = PhotonNetwork.LocalPlayer.CustomProperties;
+            if (custProperties.ContainsKey(property))
+            {
+                return (T)custProperties[property];
+            }
+            else
+            {
+                return default(T);
             }
         }
 

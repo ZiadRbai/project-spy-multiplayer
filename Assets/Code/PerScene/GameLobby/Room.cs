@@ -20,7 +20,6 @@ public class Room : MonoBehaviourPunCallbacks
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        Debug.Log("New player's nickname is :" + newPlayer.NickName);
         playerSpawner.InstantiatePlayerListing(newPlayer, transform, playerList);
     }
 

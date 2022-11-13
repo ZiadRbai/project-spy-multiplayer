@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 595fe2a212c588d44b24ca6c122e2e31, type: 3}
-  m_Name: Role 3
+  m_Name: Spy
   m_EditorClassIdentifier: 
-  roleId: 2
-  roleName: Role 3
-  roleDescription: 'This is a role description of Role number 3 and this is filler
+  eRole: 1
+  roleName: Spy
+  roleDescription: 'This is a role description of Role number 2 and this is filler
     text to be repeated and this is filler text to be repeated and this is filler
     text to be repeated and this is filler text to be repeated and this is filler
     text to be repeated and this is filler text to be repeated and this is filler
