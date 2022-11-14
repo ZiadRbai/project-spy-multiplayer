@@ -11,7 +11,8 @@ public class WordList : ScriptableObject
     [Tooltip("Please use the following format : \n word1, word2, word3 etc... ")]
     string words;
 
-    string customWords;
+
+    string customWords = "";
 
     public string GetRandomWord()
     {
@@ -22,8 +23,6 @@ public class WordList : ScriptableObject
 
     private List<string> StringToList(string str)
     {
-        return str.Split(',').ToList();
+        return str.Split(", ").ToList();
     }
-
-
 }

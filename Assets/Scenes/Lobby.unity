@@ -1294,7 +1294,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joinInput: {fileID: 1739487650}
   nameInput: {fileID: 1115914593}
-  maxPlayers: 3
+  maxPlayers: 5
   popUpManager: {fileID: 11400000, guid: 1af7cab3d96deb64fb97b9545551ac61, type: 2}
   RoomName: {fileID: 11400000, guid: 44a56568b180b104895f1cb10a494280, type: 2}
 --- !u!4 &1077010214

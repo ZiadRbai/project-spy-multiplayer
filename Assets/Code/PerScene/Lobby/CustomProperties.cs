@@ -8,6 +8,8 @@ public class CustomProperties : MonoBehaviour
 {
     public const string Ready = "Ready";
     public const string Role = "Role";
+    public const string Word = "Word";
+
 
 
     public static T GetCustomProperty<T>(string property, Player targetPlayer)

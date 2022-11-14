@@ -10,6 +10,9 @@ public class CardDisplay : MonoBehaviour
 
     [SerializeField] private TMP_Text roleText;
     [SerializeField] private TMP_Text wordText;
+    [SerializeField] private TMP_Text yourWordIs;
+    [SerializeField] private TMP_Text NoWord;
+
     [SerializeField] private TMP_Text descriptionText;
 
 
@@ -33,7 +36,17 @@ public class CardDisplay : MonoBehaviour
                 break;
         }
         roleText.text = role.roleName;
-        wordText.text = "Not yet";
+        if (role.eRole == eRole.Spy)
+        {
+            yourWordIs.gameObject.SetActive(false);
+            wordText.gameObject.SetActive(false);
+            NoWord.gameObject.SetActive(true);
+        }
+        else
+        {
+            wordText.text = CustomProperties.LocalPlayer.GetLocalCustomProperty<string>(CustomProperties.Word);
+        }
+        
         descriptionText.text = role.roleDescription;
     }
 

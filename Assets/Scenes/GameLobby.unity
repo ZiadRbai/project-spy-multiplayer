@@ -1192,6 +1192,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roles: {fileID: 11400000, guid: 8c4757d77ab1a5b4a90e9fe0b7f4ad92, type: 2}
   players: {fileID: 11400000, guid: 5368632b29f563640aa796c078be878e, type: 2}
+  words: {fileID: 11400000, guid: 8d051290e7c45124a852a3309652a562, type: 2}
   spyCount: 1
   internCount: 1
 --- !u!1 &1045030589

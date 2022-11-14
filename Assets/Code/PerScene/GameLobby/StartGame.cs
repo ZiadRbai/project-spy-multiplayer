@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public class StartGame :  MonoBehaviour, IButton
@@ -9,7 +8,7 @@ public class StartGame :  MonoBehaviour, IButton
     {
         if (playerList.isEveryoneReady())
         {
-            ChangeRooms();
+            Starto();
         }
         else
         {
@@ -17,11 +16,10 @@ public class StartGame :  MonoBehaviour, IButton
         }
     }
 
-    private void ChangeRooms()
+    private void Starto()
     {
         GameObject player1 = GameObject.FindGameObjectWithTag("PhotonView").gameObject;
-        player1.GetComponent<RoleAssigner>().AssignRoles();
-        player1.GetComponent<MySceneManager>().ChangeRoomScene("GameRoom");
+        player1.GetComponent<GameSetup>().StartGame();
     }
 
 
