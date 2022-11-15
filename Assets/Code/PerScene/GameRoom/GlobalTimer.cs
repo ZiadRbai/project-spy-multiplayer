@@ -29,6 +29,12 @@ public class GlobalTimer : MonoBehaviourPunCallbacks
         if (!started) return;
 
         timerValue = timerInSeconds - (int)(PhotonNetwork.Time - initTime);
+        if (timerValue < 0)
+        {
+            PhotonNetwork.RemoveBufferedRPCs(1);
+            GameObject.FindGameObjectWithTag("PhotonView").GetComponent<MySceneManager>().ChangeRoomScene("VotingRoom");
+        }
+
         timerText.text = timeFormat(timerValue);
     }
 

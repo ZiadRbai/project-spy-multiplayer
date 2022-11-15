@@ -1109,7 +1109,7 @@ GameObject:
   - component: {fileID: 910157043}
   - component: {fileID: 910157045}
   m_Layer: 0
-  m_Name: Player
+  m_Name: GameManager
   m_TagString: PhotonView
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
