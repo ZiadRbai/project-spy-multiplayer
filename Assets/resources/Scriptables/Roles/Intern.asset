@@ -14,9 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eRole: 2
   roleName: Intern
-  roleDescription: 'This is a role description of Role number 3 and this is filler
-    text to be repeated and this is filler text to be repeated and this is filler
-    text to be repeated and this is filler text to be repeated and this is filler
-    text to be repeated and this is filler text to be repeated and this is filler
-    text to be repeated and this is filler text to be repeated and this is filler
-    text to be repeated and this is filler text to be repeated '
+  roleDescription: 'Intern Description  Intern Description  Intern Description  Intern
+    Description  Intern Description  Intern Description  Intern Description  Intern
+    Description  Intern Description  Intern Description  Intern Description  Intern
+    Description  '

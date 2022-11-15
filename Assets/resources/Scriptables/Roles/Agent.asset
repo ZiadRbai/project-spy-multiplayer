@@ -12,11 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 595fe2a212c588d44b24ca6c122e2e31, type: 3}
   m_Name: Agent
   m_EditorClassIdentifier: 
-  role: 0
+  eRole: 0
   roleName: Agent
-  roleDescription: 'This is a role description of Role number 1 and this is filler
-    text to be repeated and this is filler text to be repeated and this is filler
-    text to be repeated and this is filler text to be repeated and this is filler
-    text to be repeated and this is filler text to be repeated and this is filler
-    text to be repeated and this is filler text to be repeated and this is filler
-    text to be repeated and this is filler text to be repeated '
+  roleDescription: 'Agent Description  Agent Description  Agent Description  Agent
+    Description  Agent Description  Agent Description  Agent Description  Agent Description 
+    Agent Description  Agent Description  '

@@ -36,6 +36,7 @@ public class CardDisplay : MonoBehaviour
                 break;
         }
         roleText.text = role.roleName;
+
         if (role.eRole == eRole.Spy)
         {
             yourWordIs.gameObject.SetActive(false);

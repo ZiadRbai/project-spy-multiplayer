@@ -9,8 +9,8 @@ public class CustomProperties : MonoBehaviour
     public const string Ready = "Ready";
     public const string Role = "Role";
     public const string Word = "Word";
-
-
+    public const string isOut = "isOut";
+    public const string votedOn = "votedOn";
 
     public static T GetCustomProperty<T>(string property, Player targetPlayer)
     {
@@ -31,6 +31,27 @@ public class CustomProperties : MonoBehaviour
         custProperties[property] = value;
         targetPlayer.SetCustomProperties(custProperties);
     }
+
+    public static void SetRoomCustomProperty<T>(string property, T value)
+    {
+        ExitGames.Client.Photon.Hashtable custProperties = PhotonNetwork.CurrentRoom.CustomProperties;
+        custProperties[property] = value;
+        PhotonNetwork.CurrentRoom.SetCustomProperties(custProperties);
+    }
+
+    public static T GetRoomCustomProperty<T>(string property)
+    {
+        ExitGames.Client.Photon.Hashtable custProperties = PhotonNetwork.CurrentRoom.CustomProperties;
+        if (custProperties.ContainsKey(property))
+        {
+            return (T)custProperties[property];
+        }
+        else
+        {
+            return default(T);
+        }
+    }
+
 
     public class LocalPlayer
     {

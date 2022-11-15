@@ -10,42 +10,75 @@ public class GameSetup : MonoBehaviour
     public uint spyCount;
     public uint internCount;
 
+    private string agentWord, spyWord, internWord;
+    private List<Role> setRoles;
+    private int ite;
 
-    public void AssignRolesAndWords()
+    public void StartGame()
     {
-        List<Role> setRoles = roles.GetRoleList((uint)players.GetRoomSize(), spyCount, internCount);
-        int i = 0;
-        string agentWord = words.GetRandomWord();
-        string internWord = words.GetRandomWord();
-        string spyWord = null;
+        Assignements();
+        GetComponent<MySceneManager>().ChangeRoomScene("GameRoom");
+    }
+
+    private void Assignements()
+    {
+        AssignRolesWords(true, null);
 
         foreach (KeyValuePair<int,BasePlayer> playerIn in players.roomList)
         {
-            playerIn.Value.SetCustomProperty<int>(CustomProperties.Role, ((int)setRoles[i].eRole));
+            AssignRolesWords(false, playerIn.Value);
+            AssignNonSpectators(playerIn.Value);
+            AssignVotedOn(playerIn.Value);
+        }
+    }
 
-            switch (setRoles[i].eRole)
+    private void AssignRolesWords(bool partOne, BasePlayer player)
+    {
+        if (partOne)
+        {
+            ite = 0;
+            this.setRoles = roles.GetRoleList((uint)players.GetRoomSize(), this.spyCount, this.internCount);
+
+            this.agentWord = words.GetRandomWord();
+            this.internWord = words.GetRandomWord();
+            this.spyWord = null;
+            while (this.internWord == this.agentWord)
+            {
+                this.internWord = words.GetRandomWord();
+            }
+        }
+        else
+        {
+            player.SetCustomProperty<int>(CustomProperties.Role, ((int)this.setRoles[ite].eRole));
+
+            switch (this.setRoles[ite].eRole)
             {
                 case eRole.Agent:
-                    playerIn.Value.SetCustomProperty<string>(CustomProperties.Word, agentWord);
+                    player.SetCustomProperty<string>(CustomProperties.Word, this.agentWord);
                     break;
                 case eRole.Spy:
-                    playerIn.Value.SetCustomProperty<string>(CustomProperties.Word, spyWord);
+                    player.SetCustomProperty<string>(CustomProperties.Word, this.spyWord);
                     break;
                 case eRole.Intern:
-                    playerIn.Value.SetCustomProperty<string>(CustomProperties.Word, internWord);
+                    player.SetCustomProperty<string>(CustomProperties.Word, this.internWord);
                     break;
                 default:
                     break;
             }
-            i++;
+            ite++;
         }
     }
-    public void StartGame()
+
+    private void AssignNonSpectators(BasePlayer player)
     {
-        AssignRolesAndWords();
-
-
-        GetComponent<MySceneManager>().ChangeRoomScene("GameRoom");
+        player.SetCustomProperty<bool>(CustomProperties.isOut, false);
     }
+
+    private void AssignVotedOn(BasePlayer player)
+    {
+        player.SetCustomProperty<bool>(CustomProperties.votedOn, false);
+    }
+
+
 
 }
