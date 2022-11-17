@@ -6,10 +6,10 @@ using Photon.Realtime;
 public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
 {
     [SerializeField]
-    private  TMP_InputField joinInput, nameInput;
+    public GameSettings gameSettings;
 
-    [SerializeField] 
-    private byte maxPlayers;
+    [SerializeField]
+    private TMP_InputField joinInput, nameInput;
 
     public PopUpManager popUpManager;
     private int roomCodeLength = 5;
@@ -27,7 +27,7 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
     private RoomOptions SetRoomOptions()
     {
         RoomOptions roomOptions = new RoomOptions();
-        roomOptions.MaxPlayers = maxPlayers;
+        roomOptions.MaxPlayers = gameSettings.maxPlayers;
 
         return roomOptions;
     }

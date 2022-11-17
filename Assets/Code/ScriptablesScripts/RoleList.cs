@@ -1,8 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
-using System.Runtime;
 
 [CreateAssetMenu(menuName = "Scriptables/Roles/Role List")]
 
@@ -11,7 +8,6 @@ public class RoleList : ScriptableObject
     [SerializeField] public Role agentRole;
     [SerializeField] public Role spyRole;
     [SerializeField] public Role internRole;
-
 
     public List<Role> GetRoleList(uint playerCount, uint spyCount, uint internCount)
     {

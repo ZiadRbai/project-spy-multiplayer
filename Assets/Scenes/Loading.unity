@@ -566,6 +566,7 @@ GameObject:
   - component: {fileID: 1412984669}
   - component: {fileID: 1412984668}
   - component: {fileID: 1412984670}
+  - component: {fileID: 1412984671}
   m_Layer: 0
   m_Name: ConnectToServer
   m_TagString: Untagged
@@ -613,3 +614,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RoomName: {fileID: 11400000, guid: 44a56568b180b104895f1cb10a494280, type: 2}
+--- !u!114 &1412984671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1412984667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 831e8b4815a9fce44bd7e5a4db45fa50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultSet: {fileID: 11400000, guid: 4736e5a707ff4064b93915be43f8da72, type: 2}
+  currentSet: {fileID: 11400000, guid: 2a894fd7d928ef04a9f9598f8a06ba9c, type: 2}

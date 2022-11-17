@@ -5,21 +5,33 @@ using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
 
-public class GlobalTimer : MonoBehaviourPunCallbacks
+public class GlobalCountdown : MonoBehaviourPunCallbacks
 {
-    [SerializeField] int timerInSeconds;
+    public delegate void Countdown();
+    public static event Countdown OnCountdownEnd;
+
+    [SerializeField] GameSettings gameSettings;
+    [SerializeField] bool isRound_notVote;
+    [Space(10)]
     [SerializeField] TMP_Text timerText;
+
+
+    private int timerInSeconds;
     bool started = false;
     double initTime;
     int timerValue;
 
-
     void Start()
     {
+        if (isRound_notVote)
+            timerInSeconds = gameSettings.secondsPerRound;
+        else
+            timerInSeconds = gameSettings.secondsPerVotingRound;
+
         timerText.text = timeFormat(timerInSeconds);
         if (PhotonNetwork.LocalPlayer.IsMasterClient)
         {
-            Invoke("MasterStartTimer", 2f);
+            Invoke("MasterStartTimer", 1f);
         }
         PhotonNetwork.AddCallbackTarget(this);
     }
@@ -31,8 +43,8 @@ public class GlobalTimer : MonoBehaviourPunCallbacks
         timerValue = timerInSeconds - (int)(PhotonNetwork.Time - initTime);
         if (timerValue < 0)
         {
-            PhotonNetwork.RemoveBufferedRPCs(1);
-            GameObject.FindGameObjectWithTag("PhotonView").GetComponent<MySceneManager>().ChangeRoomScene("VotingRoom");
+            if(OnCountdownEnd != null) 
+                OnCountdownEnd();
         }
 
         timerText.text = timeFormat(timerValue);

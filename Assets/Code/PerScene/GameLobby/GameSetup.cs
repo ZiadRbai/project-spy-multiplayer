@@ -3,12 +3,11 @@ using UnityEngine;
 
 public class GameSetup : MonoBehaviour
 {
+    [SerializeField] GameSettings gameSettings;
+    [Space(10)]
     [SerializeField] RoleList roles;
     [SerializeField] PlayerList players;
     [SerializeField] WordList words;
-
-    public uint spyCount;
-    public uint internCount;
 
     private string agentWord, spyWord, internWord;
     private List<Role> setRoles;
@@ -37,7 +36,7 @@ public class GameSetup : MonoBehaviour
         if (partOne)
         {
             ite = 0;
-            this.setRoles = roles.GetRoleList((uint)players.GetRoomSize(), this.spyCount, this.internCount);
+            this.setRoles = roles.GetRoleList((uint)players.GetRoomSize(), gameSettings.spyCount, gameSettings.internCount);
 
             this.agentWord = words.GetRandomWord();
             this.internWord = words.GetRandomWord();

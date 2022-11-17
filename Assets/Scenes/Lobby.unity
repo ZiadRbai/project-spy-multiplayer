@@ -1292,9 +1292,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de3fe8235c1856d46af9f0a40322b35f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameSettings: {fileID: 11400000, guid: 2a894fd7d928ef04a9f9598f8a06ba9c, type: 2}
   joinInput: {fileID: 1739487650}
   nameInput: {fileID: 1115914593}
-  maxPlayers: 5
   popUpManager: {fileID: 11400000, guid: 1af7cab3d96deb64fb97b9545551ac61, type: 2}
   RoomName: {fileID: 11400000, guid: 44a56568b180b104895f1cb10a494280, type: 2}
 --- !u!4 &1077010214

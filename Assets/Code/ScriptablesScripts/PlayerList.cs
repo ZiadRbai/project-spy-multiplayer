@@ -43,6 +43,8 @@ public class PlayerList : ScriptableObject
         return true;
     }
 
+
+
     public void Clear()
     {
         roomList.Clear();
