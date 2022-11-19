@@ -1,5 +1,4 @@
 using UnityEngine;
-using Photon.Realtime;
 using UnityEngine.UI;
 
 public class PlayerVoting : BasePlayer
@@ -8,13 +7,16 @@ public class PlayerVoting : BasePlayer
     [SerializeField] Image image;
     [SerializeField] Color colorNormal;
     [SerializeField] Color colorHighlighted;
+    [SerializeField] Color colorLocalPlayer;
 
-    bool isHighlighted = false;
+    public int VotesOn = 0;
+
     PlayerVoteManager pvm;
 
     private void Awake()
     {
-        pvm = transform.parent.GetComponent<PlayerVoteManager>();   
+        pvm = transform.parent.GetComponent<PlayerVoteManager>();
+        image.color = colorNormal;
     }
 
     public void OnClick()
@@ -22,18 +24,15 @@ public class PlayerVoting : BasePlayer
         pvm.HighlightThis(this);
     }    
 
-    public void SwitchHighlight(bool value)
+    public void ChangeHighlightTo(bool value )
     {
         if (value)
         {
-            isHighlighted = true;
             image.color = colorHighlighted;
         }
         else
         {
-            isHighlighted = true;
             image.color = colorNormal;
         }
     }
-
 }

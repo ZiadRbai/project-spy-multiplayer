@@ -45,6 +45,8 @@ public class GlobalCountdown : MonoBehaviourPunCallbacks
         {
             if(OnCountdownEnd != null) 
                 OnCountdownEnd();
+
+            started = false;
         }
 
         timerText.text = timeFormat(timerValue);

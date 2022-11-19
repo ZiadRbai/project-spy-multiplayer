@@ -8,9 +8,11 @@ public class CustomProperties : MonoBehaviour
 {
     public const string Ready = "Ready";
     public const string Role = "Role";
-    public const string Word = "Word";
-    public const string isOut = "isOut";
-    public const string votedOn = "votedOn";
+    public const string Word = "Word"; //string
+    public const string Vote = "Vote"; //int
+    public const string isVotedOn = "votedOn"; //bool
+    public const string isOut = "isOut"; //bool
+    
 
     public static T GetCustomProperty<T>(string property, Player targetPlayer)
     {
@@ -62,14 +64,9 @@ public class CustomProperties : MonoBehaviour
             return newState;
         }
 
-        public static void SetLocalPlayerProperties(string playerNickname)
+        public static void SetLocalPlayerReady(string playerNickname)
         {
             SetlocalPlayerUsername(playerNickname);
-            InitializeLocalCustomProperties();
-        }
-
-        private static void InitializeLocalCustomProperties()
-        {
             SetCustomProperty<bool>(Ready, PhotonNetwork.LocalPlayer, false);
         }
 
@@ -96,6 +93,13 @@ public class CustomProperties : MonoBehaviour
             {
                 return default(T);
             }
+        }
+
+        public static void SetLocalCustomProperty<T>(string property, T value)
+        {
+            ExitGames.Client.Photon.Hashtable custProperties = PhotonNetwork.LocalPlayer.CustomProperties;
+            custProperties[property] = value;
+            PhotonNetwork.LocalPlayer.SetCustomProperties(custProperties);
         }
 
     }

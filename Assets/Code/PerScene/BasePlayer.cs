@@ -17,6 +17,12 @@ public class BasePlayer : MonoBehaviourPunCallbacks
         _player = player;
         textAsset.SetText(player.NickName);
     }
+
+    public bool isLocalPlayer()
+    {
+        return _player.IsLocal;
+    }
+
     public void SetCustomProperty<T>(string property, T value)
     {
         CustomProperties.SetCustomProperty<T>(property, _player, value);
@@ -24,5 +30,10 @@ public class BasePlayer : MonoBehaviourPunCallbacks
     public T GetCustomProperty<T>(string property)
     {
         return CustomProperties.GetCustomProperty<T>(property, _player);
+    }
+
+    public Player GetPlayerObject()
+    {
+        return _player;
     }
 }

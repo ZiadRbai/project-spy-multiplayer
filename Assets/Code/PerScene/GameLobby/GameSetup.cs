@@ -75,7 +75,7 @@ public class GameSetup : MonoBehaviour
 
     private void AssignVotedOn(BasePlayer player)
     {
-        player.SetCustomProperty<bool>(CustomProperties.votedOn, false);
+        player.SetCustomProperty<bool>(CustomProperties.isVotedOn, false);
     }
 
 

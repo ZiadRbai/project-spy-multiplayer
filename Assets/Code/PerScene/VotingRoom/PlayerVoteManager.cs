@@ -1,10 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
 public class PlayerVoteManager : MonoBehaviour
 {
     [SerializeField] private PlayerList playerList;
+
+    [HideInInspector] private PlayerVoting currentVote;
 
     void Awake()
     {
@@ -15,14 +17,33 @@ public class PlayerVoteManager : MonoBehaviour
     {
         foreach(PlayerVoting pv in playerList.roomList.Values)
         {
-            pv.SwitchHighlight(false);
+            if (!pv.isLocalPlayer())
+            {
+                pv.ChangeHighlightTo(false);
+            }
         }
     }
 
     public void HighlightThis(PlayerVoting pv)
     {
-        ResetVotes();
-        pv.SwitchHighlight(true);
+        if (!pv.isLocalPlayer())
+        {
+            ResetVotes();
+            if (pv == currentVote)
+            {
+                currentVote = null;
+                pv.ChangeHighlightTo(false);
+                return;
+            }
+            currentVote = pv;
+            pv.ChangeHighlightTo(true);
+        }
     }
+
+    public PlayerVoting GetVote()
+    {
+        return currentVote;
+    }
+
 
 }

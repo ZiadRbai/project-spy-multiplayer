@@ -6,13 +6,18 @@ using Photon.Pun;
 public class BasePlayerSpawner : MonoBehaviour
 {
     [SerializeField] private BasePlayer basePlayer;
+    [SerializeField] private bool showLocalPlayer = true;
     public void PopulateRoom(Transform room, PlayerList playerList)
     {
         foreach (KeyValuePair<int, Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
         {
+            //if (!showLocalPlayer && playerInfo.Value.IsLocal) 
+            //    continue;
+            
             InstantiatePlayerListing(playerInfo.Value, room, playerList);
         }
     }
+
     public void InstantiatePlayerListing(Player player, Transform room, PlayerList playerList)
     {
         BasePlayer element = Instantiate(basePlayer, room);

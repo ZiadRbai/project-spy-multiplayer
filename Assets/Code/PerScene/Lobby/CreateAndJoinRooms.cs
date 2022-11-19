@@ -20,7 +20,7 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
 
     public void CreateRoom()
     {
-        CustomProperties.LocalPlayer.SetLocalPlayerProperties(nameInput.text);
+        CustomProperties.LocalPlayer.SetLocalPlayerReady(nameInput.text);
         PhotonNetwork.CreateRoom(RoomName.value = CustomProperties.RandomStringGenerator(roomCodeLength), SetRoomOptions());
     }
 
@@ -41,7 +41,7 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
     {
         if(joinInput.text.Length == roomCodeLength) 
         {
-            CustomProperties.LocalPlayer.SetLocalPlayerProperties(nameInput.text);
+            CustomProperties.LocalPlayer.SetLocalPlayerReady(nameInput.text);
 
             PhotonNetwork.JoinRoom(joinInput.text); 
         }

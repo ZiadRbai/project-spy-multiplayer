@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 111507257}
   - component: {fileID: 111507256}
   - component: {fileID: 111507255}
-  - component: {fileID: 111507254}
+  - component: {fileID: 111507258}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: PhotonView
@@ -142,19 +142,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &111507254
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 111507253}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4a1f5a50d842e645bbfe249311d554a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  whatNext: 1
 --- !u!114 &111507255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,6 +191,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &111507258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 111507253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6237e4aff327c6c4586e6cec90888ebe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  players: {fileID: 11400000, guid: 5368632b29f563640aa796c078be878e, type: 2}
+  pvm: {fileID: 1266068797}
 --- !u!1 &844512358
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,6 +436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   basePlayer: {fileID: 8014919304363456373, guid: 03c5c84d473e61c4fbac0c6a15e942cb, type: 3}
+  showLocalPlayer: 0
 --- !u!114 &1266068793
 MonoBehaviour:
   m_ObjectHideFlags: 0
