@@ -39,7 +39,10 @@ public class VoteCast : MonoBehaviour
     [PunRPC]
     public void CastLocalVote()
     {
-        CustomProperties.LocalPlayer.SetLocalCustomProperty<int>(CustomProperties.Vote, pvm.GetVote().GetPlayerObject().ActorNumber);
+        if(pvm.GetVote() != null)
+        {
+            CustomProperties.LocalPlayer.SetLocalCustomProperty<int>(CustomProperties.Vote, pvm.GetVote().GetPlayerObject().ActorNumber);
+        }
     }
 
     //Done by masterclient
