@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/VotingRoom.unity
     guid: baad4e4bc9d15fc4299b05c2725ce578
+  - enabled: 1
+    path: Assets/Scenes/ResultsRoom.unity
+    guid: 1f0fb68abb43ad544947f41c3df1f1fd
   m_configObjects: {}

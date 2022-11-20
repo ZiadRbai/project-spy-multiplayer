@@ -59,10 +59,8 @@ public class VoteCast : MonoBehaviour
             print(players.GetElement(key).GetPlayerObject().NickName);
         }
 
-
+        GetComponent<MySceneManager>().ChangeRoomScene("ResultsRoom");
     }
-
-    
 
     //Done by masterclient
     private int GetWinnnerActorNumber()

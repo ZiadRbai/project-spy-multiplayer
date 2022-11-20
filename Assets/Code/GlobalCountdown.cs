@@ -12,6 +12,7 @@ public class GlobalCountdown : MonoBehaviourPunCallbacks
 
     [SerializeField] GameSettings gameSettings;
     [SerializeField] bool isRound_notVote;
+    [SerializeField] int timerOverride = -1;
     [Space(10)]
     [SerializeField] TMP_Text timerText;
 
@@ -28,6 +29,9 @@ public class GlobalCountdown : MonoBehaviourPunCallbacks
         else
             timerInSeconds = gameSettings.secondsPerVotingRound;
 
+        if (timerOverride != -1)
+            timerInSeconds = timerOverride;
+
         timerText.text = timeFormat(timerInSeconds);
         if (PhotonNetwork.LocalPlayer.IsMasterClient)
         {
@@ -41,7 +45,7 @@ public class GlobalCountdown : MonoBehaviourPunCallbacks
         if (!started) return;
 
         timerValue = timerInSeconds - (int)(PhotonNetwork.Time - initTime);
-        if (timerValue < 0)
+        if (timerValue <= 0)
         {
             if(OnCountdownEnd != null) 
                 OnCountdownEnd();

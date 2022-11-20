@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerVoting : BasePlayer
+public class PlayerVoting : BasePlayerText
 {
     [SerializeField] Button button;
     [SerializeField] Image image;

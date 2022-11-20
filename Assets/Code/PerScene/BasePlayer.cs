@@ -1,13 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Photon.Realtime;
+using UnityEngine;
 using Photon.Pun;
-using TMPro;
 
 public class BasePlayer : MonoBehaviourPunCallbacks
 {
-    [SerializeField] protected TMP_Text textAsset;
     protected Player _player;
 
     protected Player player { get; set; }
@@ -15,7 +11,6 @@ public class BasePlayer : MonoBehaviourPunCallbacks
     public virtual void SetPlayerInfo(Player player)
     {
         _player = player;
-        textAsset.SetText(player.NickName);
     }
 
     public bool isLocalPlayer()

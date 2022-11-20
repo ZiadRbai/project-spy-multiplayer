@@ -2,7 +2,7 @@ using UnityEngine;
 using Photon.Realtime;
 using UnityEngine.UI;
 
-public class PlayerLobby : BasePlayer
+public class PlayerLobby : BasePlayerText
 { 
     [SerializeField] Toggle readyToggle;
 

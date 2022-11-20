@@ -5,7 +5,6 @@ using Photon.Realtime;
 public class PlayerVoteManager : MonoBehaviour
 {
     [SerializeField] private PlayerList playerList;
-
     [HideInInspector] private PlayerVoting currentVote;
 
     void Awake()
