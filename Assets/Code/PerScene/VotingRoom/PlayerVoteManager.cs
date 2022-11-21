@@ -7,26 +7,16 @@ public class PlayerVoteManager : MonoBehaviour
     [SerializeField] private PlayerList playerList;
     [HideInInspector] private PlayerVoting currentVote = null;
 
-    void Awake()
-    {
-        ResetVotes();
-    }
-
     void ResetVotes()
     {
         foreach(PlayerVoting pv in playerList.roomList.Values)
         {
-            if (!pv.isLocalPlayer())
-            {
-                pv.ChangeHighlightTo(false);
-            }
+            pv.ChangeHighlightTo(false);
         }
     }
 
     public void HighlightThis(PlayerVoting pv)
     {
-        if (!pv.isLocalPlayer())
-        {
             ResetVotes();
             if (pv == currentVote)
             {
@@ -36,7 +26,6 @@ public class PlayerVoteManager : MonoBehaviour
             }
             currentVote = pv;
             pv.ChangeHighlightTo(true);
-        }
     }
 
     public PlayerVoting GetVote()

@@ -51,7 +51,7 @@ public class VoteCast : MonoBehaviour
         //set all voted ons to false
         foreach (PlayerVoting pv in players.roomList.Values)
         {
-            pv.SetCustomProperty<bool>(CustomProperties.isVotedOn, false);
+                pv.SetCustomProperty<bool>(CustomProperties.isVotedOn, false);
         }
 
         //Set the player voted on

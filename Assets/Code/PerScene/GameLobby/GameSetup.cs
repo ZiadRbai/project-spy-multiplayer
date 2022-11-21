@@ -28,6 +28,7 @@ public class GameSetup : MonoBehaviour
             AssignRolesWords(false, playerIn.Value);
             AssignNonSpectators(playerIn.Value);
             AssignVotedOn(playerIn.Value);
+            AssignIsOut(playerIn.Value);
         }
     }
 
@@ -77,6 +78,12 @@ public class GameSetup : MonoBehaviour
     {
         player.SetCustomProperty<bool>(CustomProperties.isVotedOn, false);
     }
+
+    private void AssignIsOut(BasePlayer player)
+    {
+        player.SetCustomProperty<bool>(CustomProperties.isOut, false);
+    }
+
 
 
 

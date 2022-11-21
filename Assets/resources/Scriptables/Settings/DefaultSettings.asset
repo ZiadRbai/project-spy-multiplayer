@@ -16,7 +16,7 @@ MonoBehaviour:
   totalRounds: 3
   secondsPerVotingRound: 10
   currentRound: 0
-  minPlayers: 3
+  minPlayers: 2
   maxPlayers: 9
   spyCount: 1
   internCount: 1

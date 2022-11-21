@@ -95,7 +95,9 @@ MonoBehaviour:
   button: {fileID: 69062649908912852}
   image: {fileID: 6466603294308062382}
   colorNormal: {r: 0.5566038, g: 0.5566038, b: 0.5566038, a: 1}
-  colorHighlighted: {r: 0.6792453, g: 0.3236027, b: 0.3236027, a: 1}
+  colorHighlighted: {r: 0.41515908, g: 0.6226415, b: 0.3260057, a: 1}
+  colorLocalPlayer: {r: 0, g: 0.28235295, b: 0.49803922, a: 1}
+  colorIsOutPlayer: {r: 0, g: 0, b: 0, a: 0.8156863}
 --- !u!114 &69062649908912852
 MonoBehaviour:
   m_ObjectHideFlags: 0

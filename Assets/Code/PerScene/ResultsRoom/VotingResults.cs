@@ -30,22 +30,27 @@ public class VotingResults : MonoBehaviour
 
     private void DisplayText(string textTo)
     {
-        textDisplay.text = textTo + " has been voted out";
+        textDisplay.text = textTo + " been voted out";
     }
 
     private string GetPlayerVotedOn()
     {
         foreach(BasePlayer bp in players.roomList.Values)
         {
-            if (bp.GetCustomProperty<bool>(CustomProperties.isVotedOn) && !bp.GetCustomProperty<bool>(CustomProperties.isOut))
+            if (bp.GetCustomProperty<bool>(CustomProperties.isVotedOn))
             {
-                bp.SetCustomProperty<bool>(CustomProperties.isOut, true);
-                return bp.GetPlayerObject().NickName;
+                if (PhotonNetwork.IsMasterClient)
+                {
+                    bp.SetCustomProperty<bool>(CustomProperties.isVotedOn, false);
+                    bp.SetCustomProperty<bool>(CustomProperties.isOut, true);
+                }
+                if (bp.isLocalPlayer())
+                {
+                    return "You have";
+                }
+                return bp.GetPlayerObject().NickName + " has";
             }
         }
-        return "No one";
+        return "No one has";
     }
-
-
-
 }
