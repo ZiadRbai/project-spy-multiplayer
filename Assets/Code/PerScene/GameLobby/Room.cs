@@ -27,4 +27,12 @@ public class Room : MonoBehaviourPunCallbacks
     {
         playerSpawner.RemovePlayerListing(otherPlayer, playerList);
     }
+
+    public static void IsOpenRoom(bool value)
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.CurrentRoom.IsOpen = value;
+        }
+    }
 }

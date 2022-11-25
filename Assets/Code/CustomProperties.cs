@@ -4,15 +4,25 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class CustomProperties : MonoBehaviour
+public class CustomProperties 
 {
+    //Player properties
     public const string Ready = "Ready";
-    public const string Role = "Role";
+    public const string Role = "Role"; //string
     public const string Word = "Word"; //string
     public const string Vote = "Vote"; //int
-    public const string isVotedOn = "votedOn"; //bool
+    public const string isVotedOn = "isVotedOn"; //bool
     public const string isOut = "isOut"; //bool
+    public const string hasWon = "hasWon"; //bool
     
+    //Room Properties
+    public const string CurrentRound = "CurrentRound"; //int
+    public const string WinningRole = "WinningRole"; //int
+    public const string GameOver = "GameOver"; //bool
+
+
+
+
 
     public static T GetCustomProperty<T>(string property, Player targetPlayer)
     {

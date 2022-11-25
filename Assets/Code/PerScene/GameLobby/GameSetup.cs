@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,24 +14,38 @@ public class GameSetup : MonoBehaviour
     private List<Role> setRoles;
     private int ite;
 
+    private void Start()
+    {
+        Room.IsOpenRoom(true);
+    }
+
     public void StartGame()
     {
         Assignements();
+        Room.IsOpenRoom(false);
         GetComponent<MySceneManager>().ChangeRoomScene("GameRoom");
     }
 
     private void Assignements()
     {
+        //Room
+        AssignNumberOfRounds();
+        AssignWinningRole();
+        AssignGameOver();
+
         AssignRolesWords(true, null);
 
+        //Players
         foreach (KeyValuePair<int,BasePlayer> playerIn in players.roomList)
         {
             AssignRolesWords(false, playerIn.Value);
             AssignNonSpectators(playerIn.Value);
             AssignVotedOn(playerIn.Value);
             AssignIsOut(playerIn.Value);
+            AssignHasWon(playerIn.Value);
         }
     }
+
 
     private void AssignRolesWords(bool partOne, BasePlayer player)
     {
@@ -83,6 +98,26 @@ public class GameSetup : MonoBehaviour
     {
         player.SetCustomProperty<bool>(CustomProperties.isOut, false);
     }
+
+    private void AssignHasWon(BasePlayer player)
+    {
+        player.SetCustomProperty<bool>(CustomProperties.hasWon, false);
+    }
+
+    private void AssignWinningRole()
+    {
+        CustomProperties.SetRoomCustomProperty<int>(CustomProperties.WinningRole, (int)eRole.Spy);
+    }
+
+    private void AssignNumberOfRounds()
+    {
+        CustomProperties.SetRoomCustomProperty<int>(CustomProperties.CurrentRound, gameSettings.totalRounds);
+    }
+    private void AssignGameOver()
+    {
+        CustomProperties.SetRoomCustomProperty<bool>(CustomProperties.GameOver, false);
+    }
+
 
 
 

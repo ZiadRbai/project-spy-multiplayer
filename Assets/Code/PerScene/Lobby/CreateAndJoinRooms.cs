@@ -17,7 +17,6 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
     [SerializeField]
     private StaticString RoomName;
 
-
     public void CreateRoom()
     {
         CustomProperties.LocalPlayer.SetLocalPlayerReady(nameInput.text);
@@ -28,6 +27,7 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
     {
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.MaxPlayers = gameSettings.maxPlayers;
+        roomOptions.IsOpen = true;
 
         return roomOptions;
     }

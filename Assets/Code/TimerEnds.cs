@@ -7,18 +7,13 @@ public class TimerEnds : MonoBehaviour
     [SerializeField] public nextAction whatNext;
     void OnEnable()
     {
-        if (PhotonNetwork.IsMasterClient)
-        {
-            GlobalCountdown.OnCountdownEnd += ActionToTake;
-        }
+        GlobalCountdown.OnCountdownEnd += ActionToTake;
+
     }
 
     void OnDisable()
     {
-        if (PhotonNetwork.IsMasterClient)
-        {
-            GlobalCountdown.OnCountdownEnd -= ActionToTake;
-        }
+        GlobalCountdown.OnCountdownEnd -= ActionToTake;
     }
 
     void ActionToTake()
