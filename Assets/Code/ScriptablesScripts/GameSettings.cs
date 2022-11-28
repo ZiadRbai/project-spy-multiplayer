@@ -4,9 +4,9 @@ using UnityEngine;
 public class GameSettings : ScriptableObject
 {
     [Header("Rounds")]
+    public int secondsPerVotingRound;
     public int secondsPerRound;
     public int totalRounds;
-    public int secondsPerVotingRound;
 
     [HideInInspector]
     public int currentRound;

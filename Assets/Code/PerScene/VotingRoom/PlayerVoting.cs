@@ -36,7 +36,7 @@ public class PlayerVoting : BasePlayerText
     {
         pvm = transform.parent.GetComponent<PlayerVoteManager>();
 
-        if (CustomProperties.LocalPlayer.GetLocalCustomProperty<bool>(CustomProperties.isOut))
+        if (CustomProperties.LocalPlayer.GetCustomProperty<bool>(CustomProperties.isOut))
         {
             isMarkedOut = true;
             button.enabled = false;

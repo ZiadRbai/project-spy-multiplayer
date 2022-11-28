@@ -10,9 +10,19 @@ public class ReadyButton : MonoBehaviour, IButton
     [SerializeField] TMP_Text buttonText;
     const string  textReadyUp = "Ready Up";
     const string  textCancel  = "Cancel";
+
+    private void Awake()
+    {
+        SetButtonText(CustomProperties.LocalPlayer.GetCustomProperty<bool>(CustomProperties.Ready));
+    }
     public void OnClick()
     {
-        if (CustomProperties.LocalPlayer.SwitchLocalReadyState())
+        SetButtonText(CustomProperties.LocalPlayer.SwitchLocalReadyState());
+    }
+
+    void SetButtonText(bool value)
+    {
+        if (value)
         {
             buttonText.SetText(textCancel);
         }
@@ -21,4 +31,5 @@ public class ReadyButton : MonoBehaviour, IButton
             buttonText.SetText(textReadyUp);
         }
     }
+
 }

@@ -12,6 +12,7 @@ public class VotingResults : MonoBehaviour
     [Space(10)]
     [SerializeField] private float timeBeforeResults;
     [SerializeField] private float timeAfterResults;
+    private BasePlayer playerToOut;
 
     void Start()
     {
@@ -21,16 +22,21 @@ public class VotingResults : MonoBehaviour
     IEnumerator Sequence()
     {
         
-        RoundManager.DecreaseRounds();
         yield return new WaitForSeconds(timeBeforeResults);
         DisplayText(GetPlayerVotedOn(), false);
         yield return new WaitForSeconds(timeAfterResults);
+        VotePlayerOut(playerToOut);
+        CheckGameState(playerToOut);
+        yield return new WaitForSeconds(timeAfterResults/4);
 
         if (gameSettings.currentRound == 0 || CustomProperties.GetRoomCustomProperty<bool>(CustomProperties.GameOver))
         {
             DisplayText(WinningRole(), true);
             yield return new WaitForSeconds(timeAfterResults);
+            CustomProperties.SetRoomCustomProperty<int>(CustomProperties.WinningRole, (int)eRole.Spy);
+            CustomProperties.SetRoomCustomProperty<bool>(CustomProperties.GameOver, false);
             GetComponent<MySceneManager>().ChangeRoomScene("GameLobby");
+
         }
         else
         {
@@ -45,15 +51,13 @@ public class VotingResults : MonoBehaviour
             case eRole.Agent:
                 return "Agents have won";
             case eRole.Spy:
-                return "Spy have won";
+                return "Spies have won";
             case eRole.Intern:
                 return "Agents have won";
             default:
                 return "No one won";
         }
-        
     }
-
 
     private void DisplayText(string textTo, bool isComplete)
     {
@@ -73,36 +77,48 @@ public class VotingResults : MonoBehaviour
         {
             if (bp.GetCustomProperty<bool>(CustomProperties.isVotedOn))
             {
-                VotePlayerOut(bp);
                 if (bp.isLocalPlayer())
                 {
+                    playerToOut = bp;
                     return "You have";
                 }
-                SpyisOut(bp);
+                playerToOut = bp;
                 return bp.GetPlayerObject().NickName + " has";
             }
         }
+        playerToOut = null;
         return "No one has";
     }
-
-    private void SpyisOut(BasePlayer pleyar)
+    
+    private void CheckGameState(BasePlayer pleyar)
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            if (pleyar.GetCustomProperty<int>(CustomProperties.Role) == (int)eRole.Spy)
+            if (CustomProperties.GetRoomCustomProperty<int>(CustomProperties.ActivePlayers) < 3)
+            {
+                CustomProperties.SetRoomCustomProperty<int>(CustomProperties.WinningRole, (int)eRole.Spy);
+                CustomProperties.SetRoomCustomProperty<bool>(CustomProperties.GameOver, true);
+                return;
+            }
+
+            if (pleyar !=null && pleyar.GetCustomProperty<int>(CustomProperties.Role) == (int)eRole.Spy)
             {
                 CustomProperties.SetRoomCustomProperty<int>(CustomProperties.WinningRole, (int)eRole.Agent);
                 CustomProperties.SetRoomCustomProperty<bool>(CustomProperties.GameOver, true);
+                return;
             }
         }
     }
 
     private void VotePlayerOut(BasePlayer player)
     {
-        if (PhotonNetwork.IsMasterClient)
+        if (PhotonNetwork.IsMasterClient && player != null)
         {
-            player.SetCustomProperty<bool>(CustomProperties.isVotedOn, false);
+            CustomProperties.CurrentRoom.IncrementCustomProperty(CustomProperties.ActivePlayers, -1);
             player.SetCustomProperty<bool>(CustomProperties.isOut, true);
+            player.SetCustomProperty<bool>(CustomProperties.isVotedOn, false);
+            Debug.Log("Done");
+            
         }
     }
 }

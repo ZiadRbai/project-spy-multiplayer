@@ -19,6 +19,8 @@ public class CustomProperties
     public const string CurrentRound = "CurrentRound"; //int
     public const string WinningRole = "WinningRole"; //int
     public const string GameOver = "GameOver"; //bool
+    public const string ActivePlayers = "ActivePlayers"; //int
+
 
 
 
@@ -64,23 +66,32 @@ public class CustomProperties
         }
     }
 
+    public class CurrentRoom
+    {
+        public static void IncrementCustomProperty(string property, int value)
+        {
+            ExitGames.Client.Photon.Hashtable custProperties = PhotonNetwork.CurrentRoom.CustomProperties;
+            custProperties[property] = (int)custProperties[property] + value;
+            PhotonNetwork.CurrentRoom.SetCustomProperties(custProperties);
+        }
+    }
 
     public class LocalPlayer
     {
         public static bool SwitchLocalReadyState()
         {
             bool newState;
-            SetCustomProperty<bool>(Ready, PhotonNetwork.LocalPlayer, newState = !GetCustomProperty<bool>(Ready, PhotonNetwork.LocalPlayer));
+            CustomProperties.SetCustomProperty(Ready, PhotonNetwork.LocalPlayer, newState = !CustomProperties.GetCustomProperty<bool>(Ready, PhotonNetwork.LocalPlayer));
             return newState;
         }
 
-        public static void SetLocalPlayerReady(string playerNickname)
+        public static void SetPlayerReady(string playerNickname)
         {
-            SetlocalPlayerUsername(playerNickname);
-            SetCustomProperty<bool>(Ready, PhotonNetwork.LocalPlayer, false);
+            SetPlayerUsername(playerNickname);
+            CustomProperties.SetCustomProperty(Ready, PhotonNetwork.LocalPlayer, false);
         }
 
-        private static void SetlocalPlayerUsername(string textInputField)
+        private static void SetPlayerUsername(string textInputField)
         {
             if (!string.IsNullOrEmpty(textInputField))
             {
@@ -92,7 +103,7 @@ public class CustomProperties
             }
         }
 
-        public static T GetLocalCustomProperty<T>(string property)
+        public static T GetCustomProperty<T>(string property)
         {
             ExitGames.Client.Photon.Hashtable custProperties = PhotonNetwork.LocalPlayer.CustomProperties;
             if (custProperties.ContainsKey(property))
@@ -105,7 +116,7 @@ public class CustomProperties
             }
         }
 
-        public static void SetLocalCustomProperty<T>(string property, T value)
+        public static void SetCustomProperty<T>(string property, T value)
         {
             ExitGames.Client.Photon.Hashtable custProperties = PhotonNetwork.LocalPlayer.CustomProperties;
             custProperties[property] = value;

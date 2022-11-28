@@ -41,7 +41,7 @@ public class VoteCast : MonoBehaviour
     {
         if(pvm.GetVote() != null)
         {
-            CustomProperties.LocalPlayer.SetLocalCustomProperty<int>(CustomProperties.Vote, pvm.GetVote().GetPlayerObject().ActorNumber);
+            CustomProperties.LocalPlayer.SetCustomProperty<int>(CustomProperties.Vote, pvm.GetVote().GetPlayerObject().ActorNumber);
         }
     }
 
@@ -61,7 +61,6 @@ public class VoteCast : MonoBehaviour
             players.GetElement(key).SetCustomProperty<bool>(CustomProperties.isVotedOn, true);
             print(players.GetElement(key).GetPlayerObject().NickName);
         }
-
         GetComponent<MySceneManager>().ChangeRoomScene("ResultsRoom");
     }
 
@@ -90,7 +89,7 @@ public class VoteCast : MonoBehaviour
             }
         }
 
-        if (duplicated)
+        if (duplicated || keyHighest == -1)
         {
             print("DRAW or NO RESULT");
             return -1;
@@ -109,10 +108,8 @@ public class VoteCast : MonoBehaviour
         foreach (PlayerVoting pv in players.roomList.Values)
         {
             voteList.Add(pv.GetCustomProperty<int>(CustomProperties.Vote));
+            pv.SetCustomProperty<int>(CustomProperties.Vote, -1);
+            
         }
     }
-
-
-
-
 }

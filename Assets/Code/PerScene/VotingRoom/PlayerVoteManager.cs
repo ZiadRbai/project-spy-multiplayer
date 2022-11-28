@@ -1,11 +1,9 @@
 using UnityEngine;
-using Photon.Pun;
-using Photon.Realtime;
 
 public class PlayerVoteManager : MonoBehaviour
 {
     [SerializeField] private PlayerList playerList;
-    [HideInInspector] private PlayerVoting currentVote = null;
+    private PlayerVoting currentVote = null;
 
     void ResetVotes()
     {

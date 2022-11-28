@@ -14,8 +14,9 @@ public class GameSetup : MonoBehaviour
     private List<Role> setRoles;
     private int ite;
 
-    private void Start()
+    void Awake()
     {
+
         Room.IsOpenRoom(true);
     }
 
@@ -32,6 +33,7 @@ public class GameSetup : MonoBehaviour
         AssignNumberOfRounds();
         AssignWinningRole();
         AssignGameOver();
+        AssignActivePlayers();
 
         AssignRolesWords(true, null);
 
@@ -118,8 +120,8 @@ public class GameSetup : MonoBehaviour
         CustomProperties.SetRoomCustomProperty<bool>(CustomProperties.GameOver, false);
     }
 
-
-
-
-
+    private void AssignActivePlayers()
+    {
+        CustomProperties.SetRoomCustomProperty<int>(CustomProperties.ActivePlayers, players.GetRoomSize());
+    }
 }

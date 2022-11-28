@@ -9,7 +9,7 @@ public class VotedOutDisplay : MonoBehaviour
 
     void Start()
     {
-        if (CustomProperties.LocalPlayer.GetLocalCustomProperty<bool>(CustomProperties.isOut))
+        if (CustomProperties.LocalPlayer.GetCustomProperty<bool>(CustomProperties.isOut))
         {
             votedOutText.enabled = true;
         }

@@ -21,7 +21,7 @@ public class CardDisplay : MonoBehaviour
 
     private void Awake()
     {
-        switch (CustomProperties.LocalPlayer.GetLocalCustomProperty<int>(CustomProperties.Role))
+        switch (CustomProperties.LocalPlayer.GetCustomProperty<int>(CustomProperties.Role))
         {
             case 0:
                 role = roleList.agentRole;
@@ -45,7 +45,7 @@ public class CardDisplay : MonoBehaviour
         }
         else
         {
-            wordText.text = CustomProperties.LocalPlayer.GetLocalCustomProperty<string>(CustomProperties.Word);
+            wordText.text = CustomProperties.LocalPlayer.GetCustomProperty<string>(CustomProperties.Word);
         }
         
         descriptionText.text = role.roleDescription;

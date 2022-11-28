@@ -16,16 +16,6 @@ public class RoundManager : MonoBehaviourPunCallbacks
         RefreshRound();
     }
 
-    public static void DecreaseRounds()
-    {
-        if (PhotonNetwork.IsMasterClient)
-        {
-            ExitGames.Client.Photon.Hashtable custProperties = PhotonNetwork.CurrentRoom.CustomProperties;
-            custProperties[CustomProperties.CurrentRound] = (int)custProperties[CustomProperties.CurrentRound] - 1;
-            PhotonNetwork.CurrentRoom.SetCustomProperties(custProperties);
-        }
-    }
-
     public override void OnRoomPropertiesUpdate(ExitGames.Client.Photon.Hashtable propertiesThatChanged)
     {
         if(propertiesThatChanged.ContainsKey(CustomProperties.CurrentRound))

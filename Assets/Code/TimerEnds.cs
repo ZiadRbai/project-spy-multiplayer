@@ -8,7 +8,6 @@ public class TimerEnds : MonoBehaviour
     void OnEnable()
     {
         GlobalCountdown.OnCountdownEnd += ActionToTake;
-
     }
 
     void OnDisable()

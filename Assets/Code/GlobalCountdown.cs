@@ -22,8 +22,9 @@ public class GlobalCountdown : MonoBehaviourPunCallbacks
     double initTime;
     int timerValue;
 
-    void Start()
+    void Awake()
     {
+        started = false;
         if (isRound_notVote)
             timerInSeconds = gameSettings.secondsPerRound;
         else
@@ -42,11 +43,13 @@ public class GlobalCountdown : MonoBehaviourPunCallbacks
 
     void Update()
     {
-        if (!started) return;
-
         timerValue = timerInSeconds - (int)(PhotonNetwork.Time - initTime);
+        if (!started || timerValue < -1) return;
+
+        
         if (timerValue <= 0)
         {
+            print("Timer Value before skipping: " + timerValue);
             if(OnCountdownEnd != null) 
                 OnCountdownEnd();
 
