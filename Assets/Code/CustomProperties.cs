@@ -8,7 +8,7 @@ public class CustomProperties
 {
     //Player properties
     public const string Ready = "Ready";
-    public const string Role = "Role"; //string
+    public const string Role = "Role"; //int
     public const string Word = "Word"; //string
     public const string Vote = "Vote"; //int
     public const string isVotedOn = "isVotedOn"; //bool

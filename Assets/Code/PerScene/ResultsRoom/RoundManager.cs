@@ -13,7 +13,7 @@ public class RoundManager : MonoBehaviourPunCallbacks
 
     public void Awake()
     {
-        RefreshRound();
+        //RefreshRound();
     }
 
     public override void OnRoomPropertiesUpdate(ExitGames.Client.Photon.Hashtable propertiesThatChanged)

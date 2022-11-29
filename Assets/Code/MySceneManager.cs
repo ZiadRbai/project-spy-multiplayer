@@ -19,4 +19,11 @@ public class MySceneManager : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
    
+    public void SpyWin(string sceneName)
+    {
+
+        PhotonView photonView = GameObject.FindGameObjectWithTag("PhotonView").GetComponent<PhotonView>();
+        photonView.RPC("ChangeScene", RpcTarget.All, sceneName);
+
+    }
 }

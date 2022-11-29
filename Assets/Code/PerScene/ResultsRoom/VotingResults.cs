@@ -13,6 +13,7 @@ public class VotingResults : MonoBehaviour
     [SerializeField] private float timeBeforeResults;
     [SerializeField] private float timeAfterResults;
     private BasePlayer playerToOut;
+    
 
     void Start()
     {
@@ -21,15 +22,17 @@ public class VotingResults : MonoBehaviour
 
     IEnumerator Sequence()
     {
-        
-        yield return new WaitForSeconds(timeBeforeResults);
-        DisplayText(GetPlayerVotedOn(), false);
-        yield return new WaitForSeconds(timeAfterResults);
-        VotePlayerOut(playerToOut);
-        CheckGameState(playerToOut);
-        yield return new WaitForSeconds(timeAfterResults/4);
+        if (!CustomProperties.GetRoomCustomProperty<bool>(CustomProperties.GameOver))
+        {
+            yield return new WaitForSeconds(timeBeforeResults);
+            DisplayText(GetPlayerVotedOn(), false);
+            yield return new WaitForSeconds(timeAfterResults);
+            VotePlayerOut(playerToOut);
+            CheckGameState(playerToOut);
+            yield return new WaitForSeconds(timeAfterResults / 4);
+        }
 
-        if (/*gameSettings.currentRound == 0 || */ CustomProperties.GetRoomCustomProperty<bool>(CustomProperties.GameOver))
+        if (CustomProperties.GetRoomCustomProperty<bool>(CustomProperties.GameOver) /* || gameSettings.currentRound == 0 */ )
         {
             DisplayText(WinningRole(), true);
             yield return new WaitForSeconds(timeAfterResults);

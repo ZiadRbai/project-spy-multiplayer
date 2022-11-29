@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77fae9b425e32e845951104b0aa4e9b9, type: 3}
   m_Name: DefaultSettings
   m_EditorClassIdentifier: 
-  secondsPerRound: 5
-  totalRounds: 3
   secondsPerVotingRound: 10
+  secondsPerRound: 20
+  totalRounds: 3
   currentRound: 0
   minPlayers: 2
   maxPlayers: 9

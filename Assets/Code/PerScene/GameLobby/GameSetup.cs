@@ -63,6 +63,9 @@ public class GameSetup : MonoBehaviour
             {
                 this.internWord = words.GetRandomWord();
             }
+
+            //Assigning the chosen agent word to the room, to be able to retrieve it later
+            CustomProperties.SetRoomCustomProperty<string>(CustomProperties.Word, this.agentWord);
         }
         else
         {
