@@ -4,6 +4,8 @@ public class PlayerVoteManager : MonoBehaviour
 {
     [SerializeField] private PlayerList playerList;
     private PlayerVoting currentVote = null;
+    private bool votingOver = false;
+
 
     void ResetVotes()
     {
@@ -15,6 +17,8 @@ public class PlayerVoteManager : MonoBehaviour
 
     public void HighlightThis(PlayerVoting pv)
     {
+        if (!votingOver)
+        {
             ResetVotes();
             if (pv == currentVote)
             {
@@ -24,6 +28,7 @@ public class PlayerVoteManager : MonoBehaviour
             }
             currentVote = pv;
             pv.ChangeHighlightTo(true);
+        }
     }
 
     public PlayerVoting GetVote()
@@ -31,5 +36,18 @@ public class PlayerVoteManager : MonoBehaviour
         return currentVote;
     }
 
+    void OnEnable()
+    {
+        GlobalCountdown.OnCountdownEnd += DisableVoting;
+    }
+    void OnDisable()
+    {
+        GlobalCountdown.OnCountdownEnd -= DisableVoting;
+    }
+
+    void DisableVoting()
+    {
+        votingOver=true;
+    }
 
 }

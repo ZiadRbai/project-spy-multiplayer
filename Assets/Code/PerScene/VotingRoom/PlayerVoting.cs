@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class PlayerVoting : BasePlayerText
 {
     [SerializeField] Button button;
-    [SerializeField] Image image;
     [SerializeField] Color colorNormal;
     [SerializeField] Color colorHighlighted;
     [SerializeField] Color colorLocalPlayer;

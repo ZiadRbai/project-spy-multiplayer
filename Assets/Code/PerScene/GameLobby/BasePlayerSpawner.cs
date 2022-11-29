@@ -9,12 +9,24 @@ public class BasePlayerSpawner : MonoBehaviour
     [SerializeField] private bool showLocalPlayer = true;
     public void PopulateRoom(Transform room, PlayerList playerList)
     {
+        List<Player> outPlayers = new List<Player>();
         foreach (KeyValuePair<int, Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
         {
             //if (!showLocalPlayer && playerInfo.Value.IsLocal) 
             //    continue;
-            
-            InstantiatePlayerListing(playerInfo.Value, room, playerList);
+            if(CustomProperties.GetCustomProperty<bool>(CustomProperties.isOut, playerInfo.Value))
+            {
+                outPlayers.Add(playerInfo.Value);
+            }
+            else
+            {
+                InstantiatePlayerListing(playerInfo.Value, room, playerList);
+
+            }
+        }
+        for (int i = 0; i < outPlayers.Count; i++)
+        {
+            InstantiatePlayerListing(outPlayers[i], room, playerList);
         }
     }
 

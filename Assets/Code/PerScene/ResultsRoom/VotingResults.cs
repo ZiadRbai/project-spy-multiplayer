@@ -29,7 +29,7 @@ public class VotingResults : MonoBehaviour
         CheckGameState(playerToOut);
         yield return new WaitForSeconds(timeAfterResults/4);
 
-        if (gameSettings.currentRound == 0 || CustomProperties.GetRoomCustomProperty<bool>(CustomProperties.GameOver))
+        if (/*gameSettings.currentRound == 0 || */ CustomProperties.GetRoomCustomProperty<bool>(CustomProperties.GameOver))
         {
             DisplayText(WinningRole(), true);
             yield return new WaitForSeconds(timeAfterResults);

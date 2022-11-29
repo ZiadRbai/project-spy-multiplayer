@@ -466,4 +466,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textAsset: {fileID: 4966756355122423497}
+  image: {fileID: 3383505098262562699}
   readyToggle: {fileID: 7543895594777216877}

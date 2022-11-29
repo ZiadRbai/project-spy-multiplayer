@@ -22,10 +22,6 @@ public class CustomProperties
     public const string ActivePlayers = "ActivePlayers"; //int
 
 
-
-
-
-
     public static T GetCustomProperty<T>(string property, Player targetPlayer)
     {
         ExitGames.Client.Photon.Hashtable custProperties = targetPlayer.CustomProperties;
